@@ -14,6 +14,10 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </div>--}}
+
+
+    @include('includes.search_form')
+
     <div class="container mx-auto mt-16">
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
