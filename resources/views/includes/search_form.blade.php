@@ -1,30 +1,68 @@
 <div class="container mx-auto p-5 rounded-md bg-white mt-16">
     <form action="">
         <h1 class="text-4xl font-bold text-gray-700 mb-10 text-center">Search Companies</h1>
-        <div class="flex justify-between items-center px-60">
-            <div class="w-1/3 mr-3">
-                <div class="border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                    <label for="name" class="block text-xs font-medium text-gray-900">Name or website</label>
-                    <input @if(request()->has('name')) value="{{ request()->get('name') }}" @endif type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm text-left" placeholder="e.g apple or apple.com">
-                </div>
-            </div>
-            <div class="w-1/3 mr-3">
-                <div class="border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                    <label for="domain_authority" class="block text-xs font-medium text-gray-900">Domain Authority</label>
-                    <input @if(request()->has('domain_authority')) value="{{ request()->get('domain_authority') }}" @endif type="text" name="domain_authority" id="domain_authority" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm text-left" placeholder="e.g 77">
-                </div>
-            </div>
-            <div class="w-1/3 mr-3">
-                <div class="border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                    <label for="root_domain_count" class="block text-xs font-medium text-gray-900">Root domains count</label>
-                    <input @if(request()->has('root_domain_count')) value="{{ request()->get('root_domain_count') }}" @endif type="text" name="root_domain_count" id="root_domain_count" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm text-left" placeholder="e.g 77000">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <div class="mt-1">
+                    <input @if(request()->has('name')) value="{{ request()->get('name') }}" @endif type="text" name="name" id="name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Name">
                 </div>
             </div>
             <div>
-                <button type="submit" class="inline-flex items-center px-6 py-4 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Search
-                </button>
+                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                <select name="status" id="status"
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                    <option value="">Choose status</option>
+                    @foreach($statuses as $status)
+                        <option
+                            @if(request()->has('status'))
+                                @if(request()->get('status') === $status->status)
+                                    selected
+                                @endif
+                            @endif
+                            value="{{ $status->status }}"
+                        >
+                            {{ $status->status }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
+            <div>
+                <label for="cro" class="block text-sm font-medium text-gray-700">CRO</label>
+                <select name="cro" id="cro"
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                    <option value="">Choose cro</option>
+                    @foreach($cros as $cro)
+                        <option
+                            @if(request()->has('cro'))
+                                @if(request()->get('cro') == $cro->id)
+                                    selected
+                            @endif
+                            @endif
+                            value="{{ $cro->id }}"
+                        >
+                            {{ $cro->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date</label>
+                <div class="mt-1">
+                    <input @if(request()->has('start_date')) value="{{ request()->get('start_date') }}" @endif type="date" data-date="" data-date-format="YYYY-MM-DD" name="start_date" id="start_date" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Start Date">
+                </div>
+            </div>
+            <div>
+                <label for="end_date" class="block text-sm font-medium text-gray-700">End Date</label>
+                <div class="mt-1">
+                    <input @if(request()->has('end_date')) value="{{ request()->get('end_date') }}" @endif type="date" data-date="" data-date-format="YYYY-MM-DD" name="end_date" id="end_date" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="End Date">
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center items-center mt-10">
+            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Search
+            </button>
         </div>
     </form>
 </div>
