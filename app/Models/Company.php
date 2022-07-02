@@ -10,8 +10,15 @@ class Company extends Model
 {
     use HasFactory;
 
-
-    public function scopeCompaniesSearch($query, array $data = [])
+    /**
+     *
+     * laravel scope for search companies
+     *
+     * @param $query
+     * @param array $data
+     * @return mixed
+     */
+    public function scopeCompaniesSearch($query, array $data = []): mixed
     {
         if ( !empty( $data ) ) {
             if ( !empty( $data['name'] ) ) {
