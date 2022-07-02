@@ -67,10 +67,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="mt-4">
-                        {{ $companies->links() }}
-                    </div>
                 </div>
+            </div>
+            <div class="mt-6 mb-10">
+                {{ $companies->links() }}
             </div>
         </div>
     </div>
