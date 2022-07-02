@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-6 mb-10">
+            <div class="mt-6 mb-10 sm:px-0 px-4">
                 {{ $companies->links() }}
             </div>
         </div>
